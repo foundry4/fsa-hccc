@@ -35,8 +35,8 @@ def upload_post():
     # Process the uploaded file
     upload = request.files.get('file')
     if upload:
-        username = request.form.get("username")
-        password = request.form.get("password")
+        username = request.form.get("username") or os.getenv('GITHUB_USERNAME')
+        password = request.form.get("password") or os.getenv('GITHUB_ACCESS_TOKEN')
         filename = secure_filename(upload.filename)
         with tempfile.NamedTemporaryFile(delete=False) as t:
             t.write(upload.read())
