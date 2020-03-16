@@ -20,7 +20,7 @@ def redirect_to_upload():
 def upload_form():
     """ Form to upload images and other files to the wiki. """
     repo = os.getenv('GITHUB_REPO')
-    return render_template('upload.html', 
+    return render_template('upload_simple.html' if os.getenv('GITHUB_ACCESS_TOKEN') else 'upload.html', 
         wiki_title=wiki_title(),
         title="Upload", 
         path="Upload", 
